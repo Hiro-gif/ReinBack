@@ -4,7 +4,6 @@ import core.funcionario.models
 import jwt
 from datetime import datetime as dt
 import datetime
-import pytz
 import random
 import ast
 import json
