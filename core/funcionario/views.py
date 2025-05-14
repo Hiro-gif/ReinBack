@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny, IsAuthenticated
-import BO.cliente.cliente as bo_cliente
+import BO.funcionario.funcionario as bo_cliente
 from rest_framework.views import APIView
 
 
@@ -26,7 +26,7 @@ class BuscaClienteCpf(View):
         clientes = bo_cliente.Cliente.get_clientes_cpf(chave_cliente=chave_cliente)
 
         status = True if clientes else False
-        descricao = '' if clientes else 'Nenhum cliente encontrado com as informações fornecidas'
+        descricao = '' if clientes else 'Nenhum funcionario encontrado com as informações fornecidas'
 
         context = {
             'status': status,
@@ -46,7 +46,7 @@ class BuscaClienteOutros(View):
         clientes = bo_cliente.Cliente.get_clientes_outros(chave_cliente=chave_cliente)
 
         status = True if clientes else False
-        descricao = '' if clientes else 'Nenhum cliente encontrado com as informações fornecidas'
+        descricao = '' if clientes else 'Nenhum funcionario encontrado com as informações fornecidas'
 
         context = {
             'status': status,
@@ -68,7 +68,7 @@ class BuscaClienteOutros(View):
 #     def get(self, *args, **kwargs):
 #         """
 #         :Nome da classe/função: get
-#         :descrição: Função chamada quando é feita uma requisição GET para a View de cadastro do cliente
+#         :descrição: Função chamada quando é feita uma requisição GET para a View de cadastro do funcionario
 #         :Criação: Nícolas Marinoni Grande - 17/08/2020
 #         :Edições:
 #         :param args:
@@ -80,7 +80,7 @@ class BuscaClienteOutros(View):
 #     def post(self, *args, **kwargs):
 #         """
 #         :Nome da classe/função: post
-#         :descrição: Função chamada quando é feita uma requisição POST para a View de cadastro do cliente
+#         :descrição: Função chamada quando é feita uma requisição POST para a View de cadastro do funcionario
 #         :Criação: Nícolas Marinoni Grande - 17/08/2020
 #         :Edições:
 #         :param args:
@@ -88,7 +88,7 @@ class BuscaClienteOutros(View):
 #         :return: Status de cadastro
 #         """
 #
-#         # cria o cliente
+#         # cria o funcionario
 #         novo_cliente = bo_cliente.Cliente(
 #             cpf_form=self.request.POST.get('cpf_cadastro'),
 #             email=self.request.POST.get('email_cadastro'),
@@ -103,15 +103,15 @@ class BuscaClienteOutros(View):
 #
 #         status_criacao = novo_cliente.cadastrar(cep=self.request.POST.get('cep_cadastro'))
 #         if status_criacao['status']:
-#             cliente = status_criacao['cliente']
+#             funcionario = status_criacao['funcionario']
 #             username = status_criacao['username']
 #
-#             BO.autenticacao.login.LoginCliente().criar(username=username, cliente_id=cliente.cpf, password=cliente.hash, request=self.request)
+#             BO.autenticacao.login.LoginCliente().criar(username=username, cliente_id=funcionario.cpf, password=funcionario.hash, request=self.request)
 #
 #         context = {
 #             'status': status_criacao['status'],
 #             'descricao': '',
-#             'cliente': status_criacao['cliente']
+#             'funcionario': status_criacao['funcionario']
 #         }
 #
 #         return JsonResponse(context, safe=False)

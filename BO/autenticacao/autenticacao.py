@@ -1,6 +1,5 @@
 
-import core.cliente.models
-import core.esporte.models
+import core.funcionario.models
 import jwt
 import datetime
 import random
@@ -22,7 +21,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
 
         # Adicione campos personalizados ao token
-        token['username'] = user.username
+        token['matricula'] = user.matricula
         token['cli_info'] = {
              'usuario_id': 123,
              'exp': (datetime.datetime.utcnow() + datetime.timedelta(minutes=30)).isoformat(),  # Expira em 30 minutos
@@ -45,7 +44,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         if not self.user.status:
             raise AuthenticationFailed('Conta inativa ou bloqueada')
         # Você pode adicionar informações adicionais ao response aqui, se necessário
-        data['username'] = self.user.username
+        data['matricula'] = self.user.matricula
 
         return data
 

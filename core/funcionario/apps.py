@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ClienteConfig(AppConfig):
-    name = 'core.cliente'
+class FuncionarioConfig(AppConfig):
+    name = 'core.funcionario'
