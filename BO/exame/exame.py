@@ -74,7 +74,7 @@ class Exame():
          except Exception as e:
              return data_str
 
-     def get_dashboard(self, filial=None, dat_inicial=None, dat_final=None):
+     def get_dashboard(self, filial=None, dat_inicial=None, dat_final=None, funcionario_id=None):
         if dat_inicial:
             dat_inicial_atualizada = self.transformar_data(dat_inicial)
         if dat_final:
@@ -84,6 +84,8 @@ class Exame():
             tipos_especie = list(core.exames.models.Tipo.objects.values().filter(tipo='CODIGO.ESPECIE'))
 
             tipos_exames = list(core.exames.models.Exame.objects.values())
+
+            lista_filiais_funcionario = list(core.funcionario.models.FilialFuncionario.objects.values_list('filial__id', flat=True).filter(funcionario=funcionario_id))
 
             dict_exame_incial = {}
             lista_incial_exame = []
@@ -121,7 +123,7 @@ class Exame():
 
             if filial == 'null':
                 exames = list(core.exames.models.ExameExecucao.objects.values('id','data_execucao','work','doper','paciente','tutor','status','valor','exame_id','exame__nome','laudo_id','laudo__informacao','especie_id','especie__informacao',
-                ).filter(status=True, data_execucao__gte=dat_inicial_atualizada, data_execucao__lte=dat_final_atualizada))
+                ).filter(status=True, data_execucao__gte=dat_inicial_atualizada, data_execucao__lte=dat_final_atualizada, filial_id__in=lista_filiais_funcionario))
             else:
                 exames = list(
                     core.exames.models.ExameExecucao.objects.values('id', 'data_execucao', 'work', 'doper', 'paciente',

@@ -355,7 +355,8 @@ class Dashboard(APIView):
         dat_final = self.request.GET.get('dataFinal')
         dados, status, mensagem = BO.exame.exame.Exame().get_dashboard(filial=filial,
                                                                        dat_inicial=dat_inicial,
-                                                                       dat_final=dat_final)
+                                                                       dat_final=dat_final,
+                                                                       funcionario_id=self.request.user.pk)
 
         return JsonResponse({'dados':dados, 'status': status, 'mensagem': mensagem})
     def post(self, *args, **kwargs):

@@ -86,7 +86,7 @@ class Funcionario():
 
      def get_filiais_funcionario(self, matricula=None):
         try:
-            filiais = list(core.funcionario.models.FilialFuncionario.objects.values('id', 'filial__nm_descritivo').filter(funcionario_id=matricula))
+            filiais = list(core.funcionario.models.FilialFuncionario.objects.values('filial__id', 'filial__nm_descritivo').filter(funcionario_id=matricula))
             return True, '', filiais
         except:
             return False, '', []
@@ -263,7 +263,7 @@ class Funcionario():
                  dt = datetime.datetime.strptime(data_nasc, '%d/%m/%Y')
              data_limpa = dt.strftime('%d%m%Y')
 
-             funcionario = core.funcionario.models.Funcionario(username=username)
+             funcionario = core.funcionario.models.Funcionario.objects.filter(username=username).first()
              funcionario.email = email
              funcionario.cpf = cpf
              funcionario.nome = nome
