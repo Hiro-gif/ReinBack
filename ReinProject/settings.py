@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-zz(zy=a9017=f)x)(g8pe!3im(=xp1gdikdri6uu)y9xc%-^e4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['18.116.72.63',"localhost2.com.br", "localhost", 'http://localhost:80', 'http://rein_front:80','13.59.212.245', 'localhost.com.br:8000','localhost.com.br']
+ALLOWED_HOSTS = ['*','18.116.72.63',"localhost2.com.br", "localhost", 'http://localhost:80', 'http://rein_front:80','13.59.212.245', 'localhost.com.br:8000','localhost.com.br']
 # Application definition
 
 INSTALLED_APPS = [
